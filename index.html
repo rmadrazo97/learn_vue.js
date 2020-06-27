@@ -1,22 +1,44 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
-	<title>Vue ToDo List</title>
-	<link href="main-styles.css" rel="stylesheet" type="text/css" />
-  <link href="svg-styles.css" rel="stylesheet" type="text/css" />
-  <link href="component-styles.css" rel="stylesheet" type="text/css" />
-	<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Lato" rel="stylesheet">
-</head>
+<script src="https://npmcdn.com/vue/dist/vue.js">
+</script>
+<div id="exercise" style="text-align:center;">
+	<!-- 1) Show an alert when the Button gets clicked -->
+	<div style="margin:10px;">
+		<button v-on:click="alert">Show Alert</button>
+    </div>
+    <!-- 2) Listen to the "keydown" event and store the value in a data property (hint: event.target.value gives you the value) -->
+    <div>
+        <input type="text" v-on:keydown.stop="updateVal">
+        <p>{{ value }}</p>
+    </div>
+    <!-- 3) Adjust the example from 2) to only fire if the "key down" is the ENTER key -->
+    <div>
+        <input type="text" v-on:keydown.enter="updateVal">
+        <p>{{ value }}</p>
+    </div>
+    <div>
+      <hr>
+      <button v-on:click="counter++">Increase</button>
+      <p>{{counter}}</p>
+      <p>{{ counter > 5 ? 'Greater than 5' : 'Smaller Than 5' }}</p>
+    </div>
+</div>
 
-<body>
-  <div id="app">
-    <custom-header></custom-header>
-    <custom-main></custom-main>
-		<custom-footer></custom-footer>
-	</div>
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-	<script src="components.js"></script>
-</body>
-</html>
+<script>
+new Vue({
+        el: '#exercise',
+        data: {
+            value: '',
+            counter: 0,
+         
+       },
+       methods: {
+        alert: function () {
+            alert("Hello");
+        },
+        updateVal: function(event){
+          this.value = event.target.value;
+        }
+      }
+    });
+
+</script>
